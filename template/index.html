@@ -1,0 +1,43 @@
+<html ng-app="InputTextApp">
+    <head>
+        <!-- AngularJS 1.7.8 -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <!-- Bootstrap 1.7.8 -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- App -->
+        <script src="{{ static_url('js/app.js') }}"></script>
+    </head>
+    <body ng-controller="InputTextController">
+        <div class="card" style="width: 40rem">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input ng-model="input_text" class="form-control" id="InputText" placeholder="Enter some text...">
+                    </div>
+                </form>
+                <span class="btn btn-primary" ng-click="submit(input_text)">Submit!</span>
+                <span ng-show="count">&nbsp;Vowel count = {{!count}}</span>
+            </div>
+            <div class="card-body">
+                <div class="btn btn-outline-primary" ng-init="show=false" ng-click="show=!show">{{!show ? 'Hide' : 'Show'}} History Table</div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" ng-show="show">
+                    <thead>
+                        <tr>
+                            <th scope="col">Text</th>
+                            <th scope="col">Vowel Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="list in history">
+                            <td>{{!list.text}}</td>
+                            <td>{{!list.count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
